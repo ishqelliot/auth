@@ -3,6 +3,7 @@ package com.ishqelliot.auth.controller;
 import com.ishqelliot.auth.entity.UserInfo;
 import com.ishqelliot.auth.model.CrudDto;
 import com.ishqelliot.auth.service.CrudService;
+import com.ishqelliot.auth.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,10 @@ import java.util.List;
 public class CrudController {
 
     @Autowired
-    private CrudService service;
+    private CrudService crudService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -23,18 +27,18 @@ public class CrudController {
 
     @PostMapping("/new")
     public String addNewUser(@RequestBody UserInfo userInfo){
-        return service.addUser(userInfo);
+        return userInfoService.addUser(userInfo);
     }
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<CrudDto> getAllTheProducts() {
-        return service.getProducts();
+        return crudService.getProducts();
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public CrudDto getProductById(@PathVariable int id) {
-        return service.getProduct(id);
+        return crudService.getProduct(id);
     }
 }

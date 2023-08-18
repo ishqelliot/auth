@@ -1,5 +1,6 @@
-package com.ishqelliot.auth.config;
+package com.ishqelliot.auth.service;
 
+import com.ishqelliot.auth.config.UserInfoUserDetails;
 import com.ishqelliot.auth.entity.UserInfo;
 import com.ishqelliot.auth.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,5 @@ public class UserInfoUserDetailsService implements UserDetailsService {
         Optional<UserInfo> userInfo = userInfoRepository.findByName(username);
         return userInfo.map(UserInfoUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("User not found"+username));
     }
+
 }

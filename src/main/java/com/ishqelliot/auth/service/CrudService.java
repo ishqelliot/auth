@@ -17,12 +17,6 @@ import java.util.stream.IntStream;
 public class CrudService {
     List<CrudDto> productList = null;
 
-    @Autowired
-    private UserInfoRepository repository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @PostConstruct
     public void loadProductsFromDB() {
         productList = IntStream.rangeClosed(1, 100)
@@ -46,10 +40,4 @@ public class CrudService {
                 .orElseThrow(() -> new RuntimeException("product " + id + " not found"));
     }
 
-
-    public String addUser(UserInfo userInfo) {
-        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        repository.save(userInfo);
-        return "user added to system ";
-    }
 }
