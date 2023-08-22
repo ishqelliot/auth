@@ -1,6 +1,5 @@
 package com.ishqelliot.auth.controller;
 
-import com.ishqelliot.auth.entity.UserInfo;
 import com.ishqelliot.auth.model.CrudDto;
 import com.ishqelliot.auth.service.CrudService;
 import com.ishqelliot.auth.service.UserInfoService;
@@ -23,11 +22,6 @@ public class CrudController {
     @GetMapping("/welcome")
     public String welcome() {
         return "Welcome this endpoint is not secure";
-    }
-
-    @PostMapping("/new")
-    public String addNewUser(@RequestBody UserInfo userInfo){
-        return userInfoService.addUser(userInfo);
     }
 
     @GetMapping("/all")

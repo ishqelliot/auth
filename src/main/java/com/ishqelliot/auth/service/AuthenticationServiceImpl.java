@@ -3,9 +3,14 @@ package com.ishqelliot.auth.service;
 import com.ishqelliot.auth.config.UserInfoUserDetails;
 import com.ishqelliot.auth.entity.UserInfo;
 import com.ishqelliot.auth.repository.UserInfoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+
+@Service
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired

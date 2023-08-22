@@ -38,9 +38,11 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
-            auth -> auth.requestMatchers("/products/welcome", "/products/new").permitAll())
-        .authorizeHttpRequests(auth -> auth.requestMatchers("/products/**").authenticated())
-        .formLogin(Customizer.withDefaults())
+            auth ->
+                auth.requestMatchers("/products/welcome", "/auth/signup")
+                    .permitAll()
+                    .requestMatchers("/products/**")
+                    .authenticated())
         .sessionManagement(
             manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authenticationProvider(authenticationProvider())
@@ -63,7 +65,7 @@ public class SecurityConfig {
 
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
-          throws Exception {
+      throws Exception {
     return config.getAuthenticationManager();
   }
 }
