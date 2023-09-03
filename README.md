@@ -17,3 +17,7 @@ execute main
   * UserDetailsService Bean: a interface used to load user details data.
   * SecurityFilterChain Bean: a bean used to cover specifications of authorisation.
   * AuthenticationProvider: a bean used to provide user details data loaded by UserDetailsService.
+
+## JWT
+* Intercept JWT filter as FilterBefore in security filter chain
+* JWT authentication filter does token validation and loads security context with appropriate details.
